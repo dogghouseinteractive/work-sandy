@@ -37,6 +37,24 @@
 		$content_label = get_field_object('block_content', 'option')['label'];
 		$content = get_field('block_content', 'option');
 	}
+	$cta_key = '';
+	$cta_label = '';
+	$cta = '';
+	$cta_class_key = '';
+	$cta_class = '';
+	if ( get_sub_field( 'block_cta' ) ) {
+		$cta_key = get_sub_field_object( 'block_cta' )['key'];
+		$cta_label = get_sub_field_object( 'block_cta' )['label'];
+		$cta = get_sub_field( 'block_cta' );
+		$cta_class_key = get_sub_field_object( 'block_cta_class' )['key'];
+		$cta_class = get_sub_field( 'block_cta_class' );
+	} else {
+		$cta_key = get_field_object( 'block_cta', 'option' )['key'];
+		$cta_label = get_field_object( 'block_cta', 'option' )['label'];
+		$cta = get_field( 'block_cta', 'option' );
+		$cta_class_key = get_field_object( 'block_cta_class', 'option' )['key'];
+		$cta_class = get_field( 'block_cta_class', 'option' );
+	}
 	$aria_label = '';
 	if($eyebrow) {
 		$aria_label = $eyebrow;

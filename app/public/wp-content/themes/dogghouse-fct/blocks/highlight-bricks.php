@@ -48,7 +48,7 @@
 				</div>
 			</div>
 		<?php } ?>	
-		<?php if($eyebrow || $heading || $content || $cta) { ?>
+		<?php if($eyebrow || $heading || $content) { ?>
 			<div class="container">
 				<?php if($eyebrow) { ?>
 					<h3 id="<?php echo $aria_label; ?>" class="eyebrow lazy fade-in-down slow delay-one-quarter"><?php echo $eyebrow; ?></h3>

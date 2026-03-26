@@ -75,6 +75,22 @@ function dogghouse_fct_setup() {
 add_action( 'after_setup_theme', 'dogghouse_fct_setup' );
 
 /**
+ * Disable front-end comments and pingbacks site-wide (reduces spam; bots post to wp-comments-post.php even without a visible form).
+ */
+function dogghouse_fct_disable_public_comments() {
+	$post_types = array( 'post', 'page', 'attachment' );
+	foreach ( $post_types as $post_type ) {
+		if ( post_type_supports( $post_type, 'comments' ) ) {
+			remove_post_type_support( $post_type, 'comments' );
+			remove_post_type_support( $post_type, 'trackbacks' );
+		}
+	}
+}
+add_action( 'init', 'dogghouse_fct_disable_public_comments', 100 );
+add_filter( 'comments_open', '__return_false', 20, 2 );
+add_filter( 'pings_open', '__return_false', 20, 2 );
+
+/**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
@@ -291,6 +307,55 @@ function wp_scss_set_variables() {
 		'headingfont' => $headingfont,
 	);
     return $variables;
+}
+
+/**
+ * Theme palette from Theme Options (same source as wp_scss_set_variables).
+ * Use for runtime CSS (e.g. standalone templates) so colors match without recompiling SCSS.
+ *
+ * @return array<string, string> Slug => hex color.
+ */
+function dogghouse_fct_get_theme_colors() {
+	static $cache = null;
+	if ( null !== $cache ) {
+		return $cache;
+	}
+	if ( ! function_exists( 'get_field' ) ) {
+		$cache = array(
+			'primary'    => '#3F5563',
+			'secondary'  => '#3D403F',
+			'tertiary'   => '#477982',
+			'quaternary' => '#477982',
+			'quinary'    => '#3F5563',
+			'senary'     => '#3D403F',
+			'septenary'  => '#477982',
+			'octonary'   => '#477982',
+			'nonary'     => '#3F5563',
+			'denary'     => '#3D403F',
+			'eleven'     => '#477982',
+			'twelve'     => '#477982',
+			'gray'       => '#F6F6F6',
+			'lightgray'  => '#EDEDED',
+		);
+		return $cache;
+	}
+	$cache = array(
+		'primary'    => get_field( 'primary_theme_color', 'option' ) ? : '#3F5563',
+		'secondary'  => get_field( 'secondary_theme_color', 'option' ) ? : '#3D403F',
+		'tertiary'   => get_field( 'tertiary_theme_color', 'option' ) ? : '#477982',
+		'quaternary' => get_field( 'quaternary_theme_color', 'option' ) ? : '#477982',
+		'quinary'    => get_field( 'quinary_theme_color', 'option' ) ? : '#3F5563',
+		'senary'     => get_field( 'senary_theme_color', 'option' ) ? : '#3D403F',
+		'septenary'  => get_field( 'septenary_theme_color', 'option' ) ? : '#477982',
+		'octonary'   => get_field( 'octonary_theme_color', 'option' ) ? : '#477982',
+		'nonary'     => get_field( 'nonary_theme_color', 'option' ) ? : '#3F5563',
+		'denary'     => get_field( 'denary_theme_color', 'option' ) ? : '#3D403F',
+		'eleven'     => get_field( 'eleven_theme_color', 'option' ) ? : '#477982',
+		'twelve'     => get_field( 'twelve_theme_color', 'option' ) ? : '#477982',
+		'gray'       => get_field( 'gray_theme_color', 'option' ) ? : '#F6F6F6',
+		'lightgray'  => get_field( 'lightgray_theme_color', 'option' ) ? : '#EDEDED',
+	);
+	return $cache;
 }
 
 /**
@@ -544,3 +609,85 @@ function ncchr_redirect_anchor($post_id) {
 		}
 	}
 }
+
+/**
+ * Vanity URLs:
+ * - /AI-creative-impact-report-file-download — PDF embed + download (no chrome).
+ * - /AI-creative-impact-report-file — Typeform landing (logo only, no nav/footer).
+ * Bump DOGHOUSE_FCT_AI_REPORT_REWRITE_VER when adding rules.
+ */
+define( 'DOGHOUSE_FCT_AI_REPORT_REWRITE_VER', 2 );
+
+function dogghouse_fct_register_ai_report_rewrite() {
+	add_rewrite_rule(
+		'^AI-creative-impact-report-file-download/?$',
+		'index.php?dogghouse_ai_impact_report=1',
+		'top'
+	);
+	add_rewrite_rule(
+		'^ai-creative-impact-report-file-download/?$',
+		'index.php?dogghouse_ai_impact_report=1',
+		'top'
+	);
+	add_rewrite_rule(
+		'^AI-creative-impact-report-file/?$',
+		'index.php?dogghouse_ai_impact_report_landing=1',
+		'top'
+	);
+	add_rewrite_rule(
+		'^ai-creative-impact-report-file/?$',
+		'index.php?dogghouse_ai_impact_report_landing=1',
+		'top'
+	);
+}
+add_action( 'init', 'dogghouse_fct_register_ai_report_rewrite', 10 );
+
+function dogghouse_fct_ai_report_query_vars( $vars ) {
+	$vars[] = 'dogghouse_ai_impact_report';
+	$vars[] = 'dogghouse_ai_impact_report_landing';
+	return $vars;
+}
+add_filter( 'query_vars', 'dogghouse_fct_ai_report_query_vars' );
+
+function dogghouse_fct_ai_report_redirect_canonical( $redirect_url ) {
+	if ( get_query_var( 'dogghouse_ai_impact_report' ) || get_query_var( 'dogghouse_ai_impact_report_landing' ) ) {
+		return false;
+	}
+	if ( isset( $_SERVER['REQUEST_URI'] ) && preg_match( '#/ai-creative-impact-report-file#i', wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) {
+		return false;
+	}
+	return $redirect_url;
+}
+add_filter( 'redirect_canonical', 'dogghouse_fct_ai_report_redirect_canonical', 10 );
+
+function dogghouse_fct_ai_report_template() {
+	if ( get_query_var( 'dogghouse_ai_impact_report' ) ) {
+		show_admin_bar( false );
+		$tpl = get_template_directory() . '/page-templates/ai-creative-impact-report.php';
+		if ( is_readable( $tpl ) ) {
+			load_template( $tpl );
+			exit;
+		}
+		status_header( 500 );
+		wp_die( esc_html__( 'Report template missing.', 'dogghouse_fct' ), '', array( 'response' => 500 ) );
+	}
+	if ( get_query_var( 'dogghouse_ai_impact_report_landing' ) ) {
+		show_admin_bar( false );
+		$tpl = get_template_directory() . '/page-templates/ai-creative-impact-report-file.php';
+		if ( is_readable( $tpl ) ) {
+			load_template( $tpl );
+			exit;
+		}
+		status_header( 500 );
+		wp_die( esc_html__( 'Landing template missing.', 'dogghouse_fct' ), '', array( 'response' => 500 ) );
+	}
+}
+add_action( 'template_redirect', 'dogghouse_fct_ai_report_template', 5 );
+
+function dogghouse_fct_flush_ai_report_rewrite() {
+	if ( (int) get_option( 'dogghouse_fct_ai_report_rewrite_ver', 0 ) < DOGHOUSE_FCT_AI_REPORT_REWRITE_VER ) {
+		flush_rewrite_rules( false );
+		update_option( 'dogghouse_fct_ai_report_rewrite_ver', (string) DOGHOUSE_FCT_AI_REPORT_REWRITE_VER );
+	}
+}
+add_action( 'init', 'dogghouse_fct_flush_ai_report_rewrite', 999 );
