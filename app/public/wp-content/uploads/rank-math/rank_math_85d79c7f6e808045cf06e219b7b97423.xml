@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="//worksandy.com/main-sitemap.xsl"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>https://worksandy.com/</loc>
+		<lastmod>2025-10-30T15:58:18+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://worksandy.com/ai-creative-impact-report/</loc>
+		<lastmod>2026-02-05T23:20:07+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://worksandy.com/about/</loc>
+		<lastmod>2025-10-30T15:52:11+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://worksandy.com/services/</loc>
+		<lastmod>2025-10-30T15:50:45+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://worksandy.com/find-talent/</loc>
+		<lastmod>2025-10-30T15:41:38+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://worksandy.com/faq/</loc>
+		<lastmod>2025-02-26T19:13:11+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://worksandy.com/join-sandy/</loc>
+		<lastmod>2025-02-26T18:58:26+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://worksandy.com/opt-out-preferences/</loc>
+		<lastmod>2025-02-13T15:15:28+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://worksandy.com/contact-us/</loc>
+		<lastmod>2025-02-09T20:08:25+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://worksandy.com/terms-of-use/</loc>
+		<lastmod>2024-05-31T17:03:45+00:00</lastmod>
+	</url>
+	<url>
+		<loc>https://worksandy.com/privacy-policy/</loc>
+		<lastmod>2024-05-31T17:02:24+00:00</lastmod>
+	</url>
+</urlset>

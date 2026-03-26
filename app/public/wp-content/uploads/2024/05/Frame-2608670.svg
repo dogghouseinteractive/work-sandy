@@ -1,0 +1,20 @@
+<svg width="1440" height="570" viewBox="0 0 1440 570" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_8566_2576)">
+<rect width="1440" height="570" fill="#090540"/>
+<ellipse opacity="0.3" cx="474" cy="473.5" rx="474" ry="473.5" transform="matrix(-0.5 -0.866025 -0.866026 0.5 1367.06 459.246)" fill="url(#paint0_linear_8566_2576)"/>
+<path d="M549.106 285C549.106 190.007 625.842 113 720.5 113C815.159 113 891.895 190.007 891.895 285L549.106 285Z" fill="white"/>
+<path d="M549.105 285C549.105 379.993 472.369 457 377.711 457C283.052 457 206.316 379.993 206.316 285L549.105 285Z" fill="#DAAEC5"/>
+<path d="M1577.79 285C1577.79 190.007 1501.05 113 1406.39 113C1311.74 113 1235 190.007 1235 285L1577.79 285Z" fill="#DAAEC5"/>
+<path d="M1234.68 285C1234.68 379.993 1157.95 457 1063.29 457C968.63 457 891.895 379.993 891.895 285L1234.68 285Z" fill="#746AE6"/>
+<path d="M205.789 285C205.789 190.007 129.053 113 34.3944 113C-60.2641 113 -137 190.007 -137 285L205.789 285Z" fill="#746AE6"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_8566_2576" x1="474" y1="0" x2="474" y2="947" gradientUnits="userSpaceOnUse">
+<stop stop-color="#EDEDED"/>
+<stop offset="1" stop-color="#EDEDED" stop-opacity="0"/>
+</linearGradient>
+<clipPath id="clip0_8566_2576">
+<rect width="1440" height="570" fill="white"/>
+</clipPath>
+</defs>
+</svg>
