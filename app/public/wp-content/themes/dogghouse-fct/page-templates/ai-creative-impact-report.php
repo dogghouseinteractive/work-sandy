@@ -69,7 +69,7 @@ header( 'X-Robots-Tag: noindex, nofollow', true );
 <body>
 	<iframe
 		class="pdf-frame"
-		src="<?php echo esc_url( $pdf_url ); ?>#view=FitH"
+		src="<?php echo esc_url( $pdf_url ); ?>#view=Fit"
 		title="<?php esc_attr_e( '2026 AI Creative Impact Report', 'dogghouse_fct' ); ?>"
 	></iframe>
 	<div class="download-bar">
