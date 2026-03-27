@@ -28,6 +28,14 @@ header( 'X-Robots-Tag: noindex, nofollow', true );
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><?php echo esc_html( get_bloginfo( 'name' ) . ' — 2026 AI Creative Impact Report' ); ?></title>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=GT-MJMC57T"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'GT-MJMC57T');
+	</script>
 	<style>
 		* { box-sizing: border-box; }
 		body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: #1a1a1a; color: #f5f5f5; }

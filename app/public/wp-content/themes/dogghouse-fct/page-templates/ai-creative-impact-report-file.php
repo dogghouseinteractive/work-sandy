@@ -27,6 +27,14 @@ header( 'X-Robots-Tag: noindex, nofollow', true );
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><?php echo esc_html( get_bloginfo( 'name' ) . ' — 2026 AI Creative Impact Report' ); ?></title>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=GT-MJMC57T"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'GT-MJMC57T');
+	</script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -190,11 +198,11 @@ header( 'X-Robots-Tag: noindex, nofollow', true );
 			padding: 0.75rem 1rem;
 			margin: 0;
 		}
-		/* Match measured Typeform embed height (~658px) so the slot and iframe don’t fight auto-resize. */
+		/* Match measured Typeform embed height (~680px) so the slot and iframe don’t fight auto-resize. */
 		.ai-landing-typeform {
 			position: relative;
 			width: 100%;
-			min-height: 658px;
+			min-height: 680px;
 			flex-shrink: 0;
 			display: block;
 			overflow: visible;
@@ -206,8 +214,15 @@ header( 'X-Robots-Tag: noindex, nofollow', true );
 			min-height: 658px;
 			border: 0;
 		}
+		.bullets-inline-with-image {
+			display: flex;
+			gap: 2em;
+			align-items: center;
+		}
 		.bullets-inline-with-image ul {
 			color: var(--theme-twelve);
+			font-size: 1.2rem;
+			margin-top: 1em;
 		}
 		.bullets-inline-with-image ul li {
 			margin-bottom: 1.5em;
@@ -216,26 +231,13 @@ header( 'X-Robots-Tag: noindex, nofollow', true );
 			.ai-landing-hero h1 {
 				font-size: 3.75rem;
 			}
-			.bullets-inline-with-image {
-				flex-direction: column;
-			}
-			.bullets-inline-with-image .ai-landing-mockup {
-				max-width: none !important;
-				width: 100% !important;
-				display: none;
-			}
-			.bullets-inline-with-image .ai-landing-mockup img {
-				max-width: none;
-			}
-		}
-		@media (max-width: 1243px) {
-			.ai-landing-hero h1 {
-				font-size: 3.5rem;
-			}
 		}
 		@media (max-width: 1243px) {
 			.ai-landing-hero h1 {
 				font-size: 3rem;
+			}
+			.bullets-inline-with-image ul {
+				font-size: 0.875rem;
 			}
 		}
 		@media (max-width: 1107px) {
@@ -248,20 +250,14 @@ header( 'X-Robots-Tag: noindex, nofollow', true );
 				grid-template-columns: 1fr;
 			}
 		}
-		@media (max-width: 960px) {
-			/* .ai-landing-typeform {
-				min-height: min(658px, calc(100vh - 10rem));
+		@media (max-width: 767px) {
+			.bullets-inline-with-image {
+				flex-direction: column;
 			}
-			.ai-landing-typeform > iframe {
-				min-height: min(658px, calc(100vh - 10rem));
-			} */
-		}
-		@media (max-width: 768px) {
-			.bullets-inline-with-image .ai-landing-mockup {
-				display: block;
-				order: -1;
-				margin-top: 0;
-				margin-bottom: -5rem;
+			.ai-landing-mockup {
+				max-width: none !important;
+				width: 100% !important;
+				margin-top: -1em;
 			}
 		}
 	</style>
@@ -296,10 +292,10 @@ header( 'X-Robots-Tag: noindex, nofollow', true );
 					<p class="lead text-twelve" style="font-size: 1.3rem; margin-top: 2em;">
 					AI adoption isn't just a tools problem. It's a team and workflow problem. The AI Creative Impact Report is built for creative and marketing leaders and shows where teams get stuck and what helps them move forward.
 					</p>
-					<div class="bullets-inline-with-image" style="display: flex; gap: 2em;">
+					<div class="bullets-inline-with-image">
 						<div>
 							<p class="bullets-intro text-eleven" style="margin: 3em 0 2em;">Inside, you&rsquo;ll find perspective on:</p>
-							<ul style="font-size: 1.2rem; margin-top: 1em;">
+							<ul>
 								<li>Where your team compares to others</li>
 								<li>What's working, what's stuck, and why</li>
 								<li>Real-world insights from leaders and creative talent</li>
@@ -326,6 +322,7 @@ header( 'X-Robots-Tag: noindex, nofollow', true );
 						data-tf-live="01KMK8CJ1FNW6J1DKCRJNB7H8G"
 						data-tf-inline-on-mobile
 						data-tf-auto-resize="480,1200"
+						data-tf-hide-headers
 					></div>
 				</div>
 			</div>
