@@ -46,6 +46,13 @@ if [[ ! -f "$LOCAL_PATH/style.css" ]]; then
 	exit 1
 fi
 
+# Source .env.deploy if present (local-only credentials file, gitignored).
+if [[ -f "$SCRIPT_DIR/.env.deploy" ]]; then
+	set -a
+	source "$SCRIPT_DIR/.env.deploy"
+	set +a
+fi
+
 # Auto-read from macOS Keychain (same credential Transmit stores).
 if [[ -z "${FTP_PASSWORD:-}" ]]; then
 	for KC_SERVER in "$FTP_HOST" "34.218.255.8" "phost3.worksandy.com"; do

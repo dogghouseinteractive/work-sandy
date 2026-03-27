@@ -6,6 +6,9 @@ local-xdebuginfo.php
 # WordPress — secrets and salts (use wp-config-sample.php after clone)
 app/public/wp-config.php
 
+# Deploy credentials (local only)
+.env.deploy
+
 # OS / editor
 .DS_Store
 Thumbs.db
