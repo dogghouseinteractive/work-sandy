@@ -27,14 +27,6 @@ header( 'X-Robots-Tag: noindex, nofollow', true );
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><?php echo esc_html( get_bloginfo( 'name' ) . ' — 2026 AI Creative Impact Report' ); ?></title>
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=GT-MJMC57T"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'GT-MJMC57T');
-	</script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -261,8 +253,19 @@ header( 'X-Robots-Tag: noindex, nofollow', true );
 			}
 		}
 	</style>
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-WXXQZ3XP');</script>
+	<!-- End Google Tag Manager -->
 </head>
 <body class="ai-landing-body"<?php echo ! empty( $theme_colors ) ? ' data-dogghouse-theme-colors="' . esc_attr( wp_json_encode( $theme_colors ) ) . '"' : ''; ?>>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WXXQZ3XP"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
 	<header class="ai-landing-header" role="banner">
 		<div class="ai-landing-logo">
 			<?php
