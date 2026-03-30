@@ -617,7 +617,7 @@ function ncchr_redirect_anchor($post_id) {
  * - /AI-creative-impact-report-file         — 301 redirect → /ai-creative-impact-report.
  * Bump DOGHOUSE_FCT_AI_REPORT_REWRITE_VER when adding/changing rules.
  */
-define( 'DOGHOUSE_FCT_AI_REPORT_REWRITE_VER', 3 );
+define( 'DOGHOUSE_FCT_AI_REPORT_REWRITE_VER', 4 );
 
 function dogghouse_fct_register_ai_report_rewrite() {
 	add_rewrite_rule(
@@ -686,9 +686,10 @@ function dogghouse_fct_ai_report_template() {
 	}
 
 	$is_landing = get_query_var( 'dogghouse_ai_impact_report_landing' );
-	if ( ! $is_landing && isset( $_SERVER['REQUEST_URI'] ) ) {
-		$path = trim( wp_unslash( $_SERVER['REQUEST_URI'] ), '/' );
-		$is_landing = preg_match( '#^ai-creative-impact-report/?(\?.*)?$#i', $path );
+	if ( ! $is_landing ) {
+		global $wp;
+		$request = isset( $wp->request ) ? $wp->request : '';
+		$is_landing = preg_match( '#^ai-creative-impact-report/?$#i', $request );
 	}
 
 	if ( $is_landing ) {
