@@ -684,7 +684,14 @@ function dogghouse_fct_ai_report_template() {
 		status_header( 500 );
 		wp_die( esc_html__( 'Report template missing.', 'dogghouse_fct' ), '', array( 'response' => 500 ) );
 	}
-	if ( get_query_var( 'dogghouse_ai_impact_report_landing' ) ) {
+
+	$is_landing = get_query_var( 'dogghouse_ai_impact_report_landing' );
+	if ( ! $is_landing && isset( $_SERVER['REQUEST_URI'] ) ) {
+		$path = trim( wp_unslash( $_SERVER['REQUEST_URI'] ), '/' );
+		$is_landing = preg_match( '#^ai-creative-impact-report/?(\?.*)?$#i', $path );
+	}
+
+	if ( $is_landing ) {
 		show_admin_bar( false );
 		$tpl = get_template_directory() . '/page-templates/ai-creative-impact-report-file.php';
 		if ( is_readable( $tpl ) ) {
