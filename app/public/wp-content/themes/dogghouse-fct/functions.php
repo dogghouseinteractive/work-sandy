@@ -613,10 +613,11 @@ function ncchr_redirect_anchor($post_id) {
 /**
  * Vanity URLs:
  * - /AI-creative-impact-report-file-download — PDF embed + download (no chrome).
- * - /AI-creative-impact-report-file — Typeform landing (logo only, no nav/footer).
- * Bump DOGHOUSE_FCT_AI_REPORT_REWRITE_VER when adding rules.
+ * - /ai-creative-impact-report              — Typeform landing (logo only, no nav/footer).
+ * - /AI-creative-impact-report-file         — 301 redirect → /ai-creative-impact-report.
+ * Bump DOGHOUSE_FCT_AI_REPORT_REWRITE_VER when adding/changing rules.
  */
-define( 'DOGHOUSE_FCT_AI_REPORT_REWRITE_VER', 2 );
+define( 'DOGHOUSE_FCT_AI_REPORT_REWRITE_VER', 3 );
 
 function dogghouse_fct_register_ai_report_rewrite() {
 	add_rewrite_rule(
@@ -630,12 +631,12 @@ function dogghouse_fct_register_ai_report_rewrite() {
 		'top'
 	);
 	add_rewrite_rule(
-		'^AI-creative-impact-report-file/?$',
+		'^AI-creative-impact-report/?$',
 		'index.php?dogghouse_ai_impact_report_landing=1',
 		'top'
 	);
 	add_rewrite_rule(
-		'^ai-creative-impact-report-file/?$',
+		'^ai-creative-impact-report/?$',
 		'index.php?dogghouse_ai_impact_report_landing=1',
 		'top'
 	);
@@ -653,12 +654,24 @@ function dogghouse_fct_ai_report_redirect_canonical( $redirect_url ) {
 	if ( get_query_var( 'dogghouse_ai_impact_report' ) || get_query_var( 'dogghouse_ai_impact_report_landing' ) ) {
 		return false;
 	}
-	if ( isset( $_SERVER['REQUEST_URI'] ) && preg_match( '#/ai-creative-impact-report-file#i', wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) {
+	if ( isset( $_SERVER['REQUEST_URI'] ) && preg_match( '#/ai-creative-impact-report(-file)?#i', wp_unslash( $_SERVER['REQUEST_URI'] ) ) ) {
 		return false;
 	}
 	return $redirect_url;
 }
 add_filter( 'redirect_canonical', 'dogghouse_fct_ai_report_redirect_canonical', 10 );
+
+function dogghouse_fct_ai_report_legacy_redirect() {
+	if ( ! isset( $_SERVER['REQUEST_URI'] ) ) {
+		return;
+	}
+	$path = trim( wp_unslash( $_SERVER['REQUEST_URI'] ), '/' );
+	if ( preg_match( '#^ai-creative-impact-report-file/?$#i', $path ) ) {
+		wp_redirect( home_url( '/ai-creative-impact-report' ), 301 );
+		exit;
+	}
+}
+add_action( 'template_redirect', 'dogghouse_fct_ai_report_legacy_redirect', 1 );
 
 function dogghouse_fct_ai_report_template() {
 	if ( get_query_var( 'dogghouse_ai_impact_report' ) ) {
